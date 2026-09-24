@@ -37,7 +37,7 @@
 % TITLE
 %----------------------------------------------------------
 
-\journalname{Arthur H. Sandonato - arthur.sandonato@usp.br - 15441240}
+\journalname{Arthur H. Sandonato - arthur.sandonato@usp.br - 15441240 - \href{https://github.com/asandonato1/Caos2026_AA1/tree/main}{Repositório da atividade}}
 \title{Introdução ao Caos - AA1}
 
 %----------------------------------------------------------
@@ -103,7 +103,7 @@ Selecionando o sistema linear
         3 & -2
     \end{bmatrix}\]
 
-    Os pontos fixos satisfazem $\vec{\dot{x}} = 0$. Como $M \neq 0$, os pontos fixos são $x^* = y^* = 0$.
+    Os pontos fixos satisfazem $\vec{\dot{x}} = 0$. Como $\det M \neq 0$, os pontos fixos são $x^* = y^* = 0$.
 
     Pra avaliar a estabilidade dos pontos fixos, podemos calcular os autovalores de $M$ através das raízes do polinômio característico 
 
@@ -120,7 +120,7 @@ Selecionando o sistema linear
     \begin{itemize}
         \item $\lambda = -2$: 
 
-        \[(A + 2I)\vec{v}_{-2} = 0 \iff \begin{bmatrix}
+        \[(M + 2I)\vec{v}_{-2} = 0 \iff \begin{bmatrix}
             -1 & 0 \\
             3 & 0 
         \end{bmatrix}\begin{bmatrix}
@@ -139,7 +139,7 @@ Selecionando o sistema linear
 
         Similarmente, def. $\vec v_{-3} = \begin{bmatrix}
             u & v
-        \end{bmatrix}^T$, temos $(A + 3I)\vec v_{-3} = 0 \iff $
+        \end{bmatrix}^T$, temos $(M + 3I)\vec v_{-3} = 0 \iff $
         \[\iff \begin{bmatrix}
             0 & 0 \\
             3 & 1
@@ -163,7 +163,7 @@ Selecionando o sistema linear
 
     Para a solução particular, considere $y_p = K e^{-3t}$, e 
 
-    \[\dot{y}_p + 2y_p = 3x_0 e^{-3t} = -3Ke^{-3t} + 2Ke^{-3t} = -3x_0e^{-3t} \overset{t \to \infty}{\longrightarrow} -3K + 2K = -3x_0 \iff K = -3x_0\]
+    \[\dot{y}_p + 2y_p = 3x_0 e^{-3t} = -3Ke^{-3t} + 2Ke^{-3t} = 3x_0e^{-3t} {\longrightarrow} -3K + 2K = 3x_0 \iff K = -3x_0\]
 
     Ou seja, 
 
@@ -222,7 +222,7 @@ Ou seja, estamos indo $\begin{bmatrix}
     -1 & -4
 \end{bmatrix} \to \begin{bmatrix}
     1 & 1
-\end{bmatrix}$, ou seja, a rotação é no sentido horário. 
+\end{bmatrix}$, ou seja, a rotação é no sentido horário. De qualquer forma, o ponto fixo é um centro, ou seja, ainda que estável, não é assintoticamente estável. 
 
 Podemos determinar a solução explícita considerando as EDOs fornecidas. Para $\dot{x}$, podemos fazer 
 
@@ -266,7 +266,7 @@ Os pontos fixos ocorrerão quando $(\dot{x}, \dot{y}) = 0 \iff $
         \partial_xf & \partial_y f \\ 
         \partial_xg & \partial_yg
     \end{bmatrix} = \begin{bmatrix}
-        3 - 2x - 3y & -2x \\
+        3 - 2x - 2y & -2x \\
         -y & 2 - x - 2y
     \end{bmatrix}\]
 
@@ -389,13 +389,11 @@ A jacobiana é, então,
 
     Se considerarmos a equação adimensionalizada original, podemos definir $g(\theta) = -\sen\theta$. Os pontos fixos são em $\sen\theta^* = 0$, ou seja 
 
-    \[\theta^* = 2\pi n, n \in \mathbb{N}\]
+    \[\theta^* = \pi n, n \in \mathbb{Z}\]
 
-    Se permitíssemos $n \in \mathbb{R}$, conseguimos avaliar a proximidade dos pontos fixos. Teríamos, então, que $n = \pm\frac{\sqrt{6}}{2\pi}\cong 0,39$ para que os pontos fixos sejam equivalentes, então, os sistemas são próximos para pequenos ângulos. 
+    Podemos escrever a série de Taylor
 
-    Ainda nessa mesma linha, podemos escrever a série de Taylor
-
-    \[\sen\theta = \sum_{n=0}^\infty \frac{(-1)^n}{(2n + 1)!}\theta^{2n + 1} = -\theta + \frac{1}{6}\theta^3 + \mathcal{O}(\theta^5)\]
+    \[\sen\theta = \sum_{n=0}^\infty \frac{(-1)^n}{(2n + 1)!}\theta^{2n + 1} = \theta - \frac{1}{6}\theta^3 + \mathcal{O}(\theta^5)\]
 
     De tal modo que, para pequenos ângulos tenhamos, de fato 
 
@@ -408,13 +406,13 @@ A jacobiana é, então,
 
     assumindo $V(0) = 0$ para ambos os casos. Desse modo, 
 
-\[\ddot{\theta} = -V'(\theta) \Rightarrow \ddot{\theta}\theta + \theta V' = 0 \Rightarrow \frac{d}{dt}\left [ \frac{\dot{\theta}^2}{2} + V(\theta)\right ] = 0 \]
+\[\ddot{\theta} = -V'(\theta) \Rightarrow \ddot{\theta}\dot{\theta} + \dot{\theta} V' = 0 \Rightarrow \frac{d}{dt}\left [ \frac{\dot{\theta}^2}{2} + V(\theta)\right ] = 0 \]
 
 Assim, como o sistema é conservativo, podemos definir $E := \frac{\dot{\theta}^2}{2}+ V(\theta) = $ cte. Disso, no ponto de retorno, $E = V(A)$, onde $A$ é a amplitude de oscilação, e disso 
 
 \[\dot{\theta} = \pm \sqrt{2(V(A) - V(\theta))} \Rightarrow T(A) = 4 \int_0^A\frac{d\theta}{\sqrt{2[V(A) - V(\theta)]}}\]
 
-Para $g$, é \href{https://ed.quantum-bg.org/elliptic-integrals.pdf}{conhecido} que $T_g(A) = 4K(k)$, $k = \sen A/2$. Para $f$, podemos escrever 
+Para $g$, é \href{https://ed.quantum-bg.org/elliptic-integrals.pdf}{conhecido} que $T_g(A) = 4K(k)$, $k = \sen (A/2)$. Para $f$, podemos escrever 
 
 \[T_f(A) = 4\int_0^{\pi/2}\frac{d\varphi}{\sqrt{1 - \frac{A^2}{12}(1 + \sen^2\varphi)}}\]
 
@@ -423,7 +421,7 @@ De modo que podemos expandir
 \[T_g = 2\pi \left ( 1 + \frac{A^2}{16} + \frac{11A^4}{3072} + \dots \right )\]
 \[T_f = 2\pi \left ( 1 + \frac{A^2}{16} + \frac{19A^4}{3072} + \dots \right )\]
 
-A diferença entre os dois métodos, então, se dá, primeiramente, no termo de ordem $\mathcal{O}(A^4)$. Para pequenas amplitudes, portanto, a aproximação, de fato, vale, sob uma perspectiva de período, também. 
+A diferença entre as duas equações, então, se dá, primeiramente, no termo de ordem $\mathcal{O}(A^4)$. Para pequenas amplitudes, portanto, a aproximação, de fato, vale, sob uma perspectiva de período, também. 
 
 Por fim, podemos analisar o retrato de fase, e a diferença visual entre os dois períodos, na fig. \ref{fig:2}.
 
@@ -435,12 +433,21 @@ Por fim, podemos analisar o retrato de fase, e a diferença visual entre os dois
 \end{figure}
 
 \section{Mapa de grau 2}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{ex3_bif.png}
+    \caption{Mapa de bifurcações para $0 < b \leq 2$.}
+    \label{fig:ex3_bif}
+\end{figure}
 \subsection{Expoente de Lyapunov nos regimes periódico e caótico}
-
+A fig. \ref{fig:ex3_bif} apresenta o diagrama de bifurcação para $0 < b \leq 2$ e,
+abaixo, o expoente de Lyapunov $\lambda(b)$. Nas regiões periódicas, $\lambda < 0$,
+e $\lambda = 0$ nos pontos de bifurcação ($b = 3/4$, $b = 5/4$, \dots); nas regiões
+caóticas, onde o atrator preenche intervalos de $x$, $\lambda > 0$.
 \subsubsection{Séries temporais}
 
-Os pontos fixos ocorrerão em $x^* = f(x^*) \iff b{x^*}^2+ x^* - 1 = 0 \Rightarrow x^* = \frac{-1 + \sqrt{1 + 4b}}{2b}$, para $x^* \in [-1,1]$. Assim, como $f'(x) = -2bx$, o mapa perde estabilidade quando $|f'(x)| < 1$, ou seja, $f'(x^*)= 1 - \sqrt{1 + 4b}$, mas, $f'(x) < 1$ $\forall b \in \langle 0, 2]$, então, a única fronteira que pode ser cruzada pelo mapa é em $-1$, que ocorre em $b = 3/4$. Como no intervalo $3/4 < b < 5/4$, $|4(1-b)|<1$, e o ciclo é estável. 
+Os pontos fixos ocorrerão em $x^* = f(x^*) \iff b{x^*}^2+ x^* - 1 = 0 \Rightarrow x^* = \frac{-1 + \sqrt{1 + 4b}}{2b}$, para $x^* \in [-1,1]$. Assim, como $f'(x) = -2bx$, o mapa perde estabilidade quando $|f'(x^*)| > 1$, ou seja, $f'(x^*)= 1 - \sqrt{1 + 4b}$, mas, $f'(x^*) < 1$ $\forall b \in \langle 0, 2]$, então, a única fronteira que pode ser cruzada pelo mapa é em $-1$, que ocorre em $b = 3/4$. Para $3/4 < b < 5/4$, o ciclo de período 2 tem multiplicador
+$\mu_2 = f'(x_+)f'(x_-) = 4(1-b)$, com $|\mu_2| < 1$, e é estável.
 
 Considerando $x_0 = 0,1$, podemos esboçar as séries temporais para dois valores de $b$, $1,1$ e $1,9$, como na fig. \ref{fig:3ai}.
 
@@ -451,13 +458,16 @@ Considerando $x_0 = 0,1$, podemos esboçar as séries temporais para dois valore
     \label{fig:3ai}
 \end{figure}
 
+A região sombreada corresponde ao transiente da série periódica ($n < 13$); no caso
+caótico, $x_0 = 0{,}1$ já pertence ao atrator $[1-b, 1]$, e não há transiente.
+
 \subsubsection{Expoente de Lyapunov e sensibilidade às condições iniciais}
 
 Se considerarmos duas condições iniciais próximas, $x_0$ e $x_0'= x_0 + \delta_0$, para algum $|\delta_0| \ll 1$. Denominando $\delta_n := x_n'- x_n$ como a separação entre duas órbitas, podemos expandir um mapa $f(x)$ em torno de $x_n$ t.q. 
 
 \[x'_{n+1}= f(x_n + \delta_n)= f(x_n) + f'(x_n)\delta_n + \mathcal{O}(\delta_n^2) \Rightarrow \delta_{n+1} \cong f'(x_n)\delta_n\]
 
-Assim, se aplicarmos $\delta_1 \cong f'(x_0)\delta_0 $, e $\delta_2 \cong f(x_1)\delta_1 = f(x_1)f(x_0)\delta_0$, podemos, por indução, escrever 
+Assim, se aplicarmos $\delta_1 \cong f'(x_0)\delta_0 $, e $\delta_2 \cong f'(x_1)\delta_1 = f'(x_1)f'(x_0)\delta_0$, podemos, por indução, escrever 
 
 \[\delta_{n+1} = \delta_0\prod_{k=0}^{n}f'(x_k)\]
 
@@ -465,7 +475,7 @@ Se escrevermos o produto na forma $|\delta_n| = |\delta_0|e^{\lambda n}$,
 
 \[\lambda = \lim_{n \to \infty}\frac{1}{n}\ln\bigg|\frac{\delta_n}{\delta_0}\bigg| = \lim_{n \to \infty}\frac{1}{n}\sum_{k=0}^{n-1}\ln|f'(x_k)|\]
 
-que é o chamado expoente de Lyapunov. Com isso, conseguimos ter uma ideia de uma taxa média de separação por iteração passada, pensando computacionalmente. Para $\lambda <0$, órbitas vizinhas convergem para um mesmo ponto, mas, para $\lambda > 0$, as perturbações crescem exponencialmente, que é uma representação da sensibilidade às condições iniciais. Por exemplo, para o mapa de grau 2, podemos analisar esse distanciamento, como na fig. \ref{fig:3aii}. Nela, podemos ver que, para o sistema em regime caótico, as séries são praticamente indistinguíveis até $n \cong 35$, a partir do qual as trajetórias se distanciam significativamente. Isso pode, também, ser visualizado por meio do log-plot de $|\delta_n|$. 
+que é o chamado expoente de Lyapunov. Com isso, conseguimos ter uma ideia de uma taxa média de separação por iteração passada, pensando computacionalmente. Para $\lambda <0$, órbitas vizinhas convergem para uma mesma órbita, mas, para $\lambda > 0$, as perturbações crescem exponencialmente, que é uma representação da sensibilidade às condições iniciais. Por exemplo, para o mapa de grau 2, podemos analisar esse distanciamento, como na fig. \ref{fig:3aii}. Nela, podemos ver que, para o sistema em regime caótico, as séries são praticamente indistinguíveis até $n \cong 35$, a partir do qual as trajetórias se distanciam significativamente. Isso pode, também, ser visualizado por meio do log-plot de $|\delta_n|$. 
 
 O contrário também vale para o mapa com $b= 1,1$ e $\lambda = -0,46$, em que $|\delta_n|$ decai com $e^{\lambda n}$, de modo que as duas séries aparentem estarem sobrepostas durante todas as iterações. 
 
@@ -478,7 +488,7 @@ O contrário também vale para o mapa com $b= 1,1$ e $\lambda = -0,46$, em que $
 
 \subsubsection{Diagramas de cobweb}
 
-Podemos construir o diagrama de cobweb a partir de $x_{n+1} = 1 - bx_n^2$, e, a partir de $(x_0, 0)$, teremos, primeiro, um movimento vertical até a curva, mapeando $(x_n, f(x_n)) \to (x_n, x_{n+1})$, e um horizontal até a diagonal. Para ambos os casos discutidos previamente, temos os mapas da fig. 
+Podemos construir o diagrama de cobweb a partir de $x_{n+1} = 1 - bx_n^2$, e, a partir de $(x_0, 0)$, teremos, primeiro, um movimento vertical até a curva, mapeando $(x_n, f(x_n)) \to (x_n, x_{n+1})$, e um horizontal até a diagonal. Para ambos os casos discutidos previamente, temos os mapas da fig. \ref{fig:3aiii}.
 
 \begin{figure}[H]
     \centering
@@ -486,7 +496,9 @@ Podemos construir o diagrama de cobweb a partir de $x_{n+1} = 1 - bx_n^2$, e, a 
     \caption{Diagrama de cobweb de ambos os casos, $b = 1,1$ e $b = 1,9$.}
     \label{fig:3aiii}
 \end{figure}
-
+Para $b = 1{,}1$ ($\lambda = -0{,}458$), a teia converge para um retângulo fechado com
+vértices em $x_\pm$, o atrator de período 2. Para $b = 1{,}9$ ($\lambda = 0{,}552$),
+a teia não se fecha, e as iterações percorrem o intervalo $[1-b, 1]$ sem se repetir.
 \subsection{Rota para o caos por duplicação de período}
 
 \subsubsection{Expoente de Lyapunov nas duplicações}
@@ -511,6 +523,7 @@ Isso pode ser visualizado a partir de um diagrama de bifurcação, como na fig. 
     \caption{Diagrama de bifurcação do mapa quadrático.}
     \label{fig:3bi_bif}
 \end{figure}
+
 
 \subsection{Janelas periódicas imersas na região caótica}
 
@@ -580,5 +593,46 @@ $64 \Rightarrow 128$  & $1{,}40108527$ & $0{,}00025653$ & $4{,}6681$ \\ \hline
 \end{table}
 
 No mapa em questão, $\delta_n$ tende à constante de Feigenbaum ($4{,}6692\ldots$).
+
+\appendix
+\section{Rotinas utilizadas}
+
+As rotinas abaixo geram as figuras e a tabela apresentadas (as imagens são salvas na pasta \texttt{imagens/}) e também estão disponíveis no \href{https://github.com/asandonato1/Caos2026_AA1/tree/main}{repositório da atividade}.
+
+\subsection*{Ex. 1a) -- \texttt{ex1a.py}}
+\addcontentsline{toc}{subsection}{Ex. 1a) -- \texttt{ex1a.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex1a.py}
+
+\subsection*{Ex. 1b) -- \texttt{ex1b.py}}
+\addcontentsline{toc}{subsection}{Ex. 1b) -- \texttt{ex1b.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex1b.py}
+
+\subsection*{Ex. 1c) -- \texttt{ex1c.py}}
+\addcontentsline{toc}{subsection}{Ex. 1c) -- \texttt{ex1c.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex1c.py}
+
+\subsection*{Ex. 2 -- \texttt{ex2.py}}
+\addcontentsline{toc}{subsection}{Ex. 2 -- \texttt{ex2.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex2.py}
+
+\subsection*{Ex. 3 e 3a) -- \texttt{ex3a.py}}
+\addcontentsline{toc}{subsection}{Ex. 3 e 3a) -- \texttt{ex3a.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex3a.py}
+
+\subsection*{Ex. 3b) -- \texttt{ex3b.py}}
+\addcontentsline{toc}{subsection}{Ex. 3b) -- \texttt{ex3b.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex3b.py}
+
+\subsection*{Ex. 3c)i) -- \texttt{ex3ci.py}}
+\addcontentsline{toc}{subsection}{Ex. 3c)i) -- \texttt{ex3ci.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex3ci.py}
+
+\subsection*{Ex. 3c)ii) -- \texttt{ex3cii.py}}
+\addcontentsline{toc}{subsection}{Ex. 3c)ii) -- \texttt{ex3cii.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex3cii.py}
+
+\subsection*{Ex. 4 -- \texttt{ex4.py}}
+\addcontentsline{toc}{subsection}{Ex. 4 -- \texttt{ex4.py}}
+\inputminted[fontsize=\scriptsize, linenos, breaklines, frame=lines]{python}{ex4.py}
 
 \end{document}
