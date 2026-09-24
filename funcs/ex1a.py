@@ -1,5 +1,9 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
+
+IMG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens")
+os.makedirs(IMG_DIR, exist_ok=True)
 
 A = np.array([[-3.0, 0.0],
               [3.0, -2.0]]) # inicializando sistema
@@ -34,9 +38,6 @@ ax.plot(0 * s, s, color="tab:blue", lw=2.2,
 ax.plot(s, -3 * s, color="tab:red", lw=2.2,
         label=r"$\mathbf{v}_1=(1,-3)$, $\lambda_1=-3$ (rápida)")
 
-ax.plot(s, 1.5 * s, "--", color="tab:green", lw=1.3,
-        label=r"isóclina $\dot y=0$: $y=\frac{3}{2}x$")
-
 t = np.linspace(0, 6, 600)
 theta = np.linspace(0, 2 * np.pi, 16, endpoint=False)
 for th in theta:
@@ -48,7 +49,7 @@ for th in theta:
     ax.annotate("", xy=(xs[k + 1], ys[k + 1]), xytext=(xs[k], ys[k]),
                 arrowprops=dict(arrowstyle="->", color="tab:orange", lw=1.2))
 
-ax.plot(0, 0, "o", color="k", ms=8, zorder=5, label="ponto fixo (nó estável)")
+ax.plot(0, 0, "o", color="k", ms=8, zorder=5, label="ponto fixo")
 
 ax.set_xlim(-L, L)
 ax.set_ylim(-L, L)
@@ -56,8 +57,8 @@ ax.set_aspect("equal")
 ax.axhline(0, color="k", lw=0.5)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$")
-ax.set_title(r"Ex. 1a: $\dot x=-3x,\ \dot y=3x-2y$ — nó estável")
+ax.set_title(r"Ex. 1a: $\dot x=-3x,\ \dot y=3x-2y$")
 ax.legend(loc="upper left", fontsize=8.5, framealpha=0.95)
 plt.tight_layout()
-plt.savefig("retrato_fase_1a.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "retrato_fase_1a.png"), dpi=200)
 plt.show()

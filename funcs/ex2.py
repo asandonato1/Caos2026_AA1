@@ -1,7 +1,11 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import quad
 from scipy.special import ellipk
+
+IMG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens")
+os.makedirs(IMG_DIR, exist_ok=True)
 
 s6 = np.sqrt(6.0)
 
@@ -85,7 +89,7 @@ ax.set_title("Período das oscilações")
 ax.legend(fontsize=8.5, loc="upper left")
 
 plt.tight_layout()
-plt.savefig("diagrama_fases_ex2.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "diagrama_fases_ex2.png"), dpi=200)
 
 print("\n  A      T_exato    T_aprox")
 for A in (0.2, 0.5, 1.0, 1.5, 2.0, 2.4):

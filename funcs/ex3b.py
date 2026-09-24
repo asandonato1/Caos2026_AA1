@@ -1,6 +1,10 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import brentq
+
+IMG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens")
+os.makedirs(IMG_DIR, exist_ok=True)
 
 
 def f(x, p): # mapa grau 2
@@ -124,7 +128,7 @@ for k, b_n in enumerate(b_bif[:4]):
     a1.text(b_n, 1.04, rf"$b_{k+1}$", color="tab:red", ha="center", fontsize=9)
 a1.set_ylim(-0.5, 1.1)
 plt.tight_layout()
-plt.savefig("ex3b_rota_duplicacao.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3b_rota_duplicacao.png"), dpi=200)
 
 fig, axs = plt.subplots(1, 4, figsize=(16, 4.2)) # lyap qse 0 nas duplicacoes
 for k, ax in enumerate(axs):
@@ -143,7 +147,7 @@ for k, ax in enumerate(axs):
 axs[0].set_ylabel(r"$\lambda$")
 plt.suptitle(r"3b-i: $\lambda\to 0$ em cada duplicação de período")
 plt.tight_layout()
-plt.savefig("ex3b_i_zoom_lyapunov.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3b_i_zoom_lyapunov.png"), dpi=200)
 
 casos = [(0.60, "período 1"), (1.10, "período 2"), (1.32, "período 4"), # series temporais
          (1.385, "período 8"), (1.397, "período 16"), (1.45, "caótico")]
@@ -160,5 +164,5 @@ for ax, (b, rot) in zip(axs, casos):
 axs[-1].set_xlabel(rf"$n$ (após descartar {N_TR} iterações de transiente)")
 axs[0].set_title("Séries temporais ao longo da cascata de duplicações")
 plt.tight_layout()
-plt.savefig("ex3b_series.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3b_series.png"), dpi=200)
 plt.show()

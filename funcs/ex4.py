@@ -4,17 +4,12 @@ import mpmath as mp
 
 mp.mp.dps = 40
 
-MAPAS = { # mapas grau 2 e 3
+MAPAS = { # mapa grau 2
     "Grau 2": dict(f=lambda x, a: 1 - a * x**2,
                    df=lambda x, a: -2 * a * x,
                    fm=lambda x, a: 1 - a * x**2,
                    dfm=lambda x, a: -2 * a * x,
                    a1=0.75, a_ini=0.60, nome_par="b"),
-    "Grau 3": dict(f=lambda x, a: 1 - a * np.abs(x)**3,
-                   df=lambda x, a: -3 * a * x * np.abs(x),
-                   fm=lambda x, a: 1 - a * abs(x)**3,
-                   dfm=lambda x, a: -3 * a * x * abs(x),
-                   a1=16 / 27, a_ini=0.40, nome_par="c"),
 }
 N_DUP = 7
 

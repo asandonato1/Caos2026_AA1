@@ -1,6 +1,10 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import brentq
+
+IMG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens")
+os.makedirs(IMG_DIR, exist_ok=True)
 
 
 def f(x, b): # mapa grau 2
@@ -138,7 +142,7 @@ for bb, cor in ((1.745, "tab:orange"), (1.76, "tab:green")):
     a2.plot(bb, lyapunov(bb)[0], "o", color=cor, ms=6)
 a1.set_ylim(-1.05, 1.1)
 plt.tight_layout()
-plt.savefig("ex3c_i_janela.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3c_i_janela.png"), dpi=200)
 
 N_TR, N_SH = 20000, 90
 fig, axs = plt.subplots(2, 1, figsize=(11, 6.5), sharex=True) # series temporais
@@ -154,6 +158,6 @@ for ax, (b, cor, rot) in zip(axs, ((1.745, "tab:orange", "caótico"),
 axs[1].set_xlabel(rf"$n$ (após descartar {N_TR} iterações de transiente)")
 axs[0].set_title("Séries temporais: região caótica e janela de período 3")
 plt.tight_layout()
-plt.savefig("ex3c_i_series.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3c_i_series.png"), dpi=200)
 
 plt.show()

@@ -1,5 +1,9 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
+
+IMG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens")
+os.makedirs(IMG_DIR, exist_ok=True)
 
 NOME_PAR = "b"
 
@@ -77,7 +81,7 @@ for p, cor in ((P_PER, "tab:green"), (P_CAO, "tab:red")):
 a2.text(P_PER, 0.6, f" b={P_PER}", color="tab:green")
 a2.text(P_CAO, 0.6, f" b={P_CAO}", color="tab:red", ha="right")
 plt.tight_layout()
-plt.savefig("ex3_bifurcacao_lyapunov.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3_bifurcacao_lyapunov.png"), dpi=200)
 
 N = 80
 xp = orbita(P_PER, X0, N) # serie periodica
@@ -102,7 +106,7 @@ ax.set_ylim(-1.35, 1.1)
 ax.legend(loc="lower right", fontsize=9)
 axs[0].set_title(rf"Séries temporais, $x_0={X0}$")
 plt.tight_layout()
-plt.savefig("ex3a_i_series.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3a_i_series.png"), dpi=200)
 
 d0 = 1e-10 # sensibilidade as cond. iniciais
 N2 = 60
@@ -129,7 +133,7 @@ for col, (p, lam, cor) in enumerate(((P_PER, lam_per, "tab:green"),
     ax.set_ylabel(r"$|\delta_n|=|x_n'-x_n|$")
     ax.legend(fontsize=8, loc="lower right" if lam > 0 else "upper right")
 plt.tight_layout()
-plt.savefig("ex3a_ii_sensibilidade.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3a_ii_sensibilidade.png"), dpi=200)
 
 
 def cobweb(ax, p, x0, n_it, lam, cor): # cobweb
@@ -159,5 +163,5 @@ x0_per = round(orbita(P_PER, X0, 200)[-1] + 0.05, 3) # x0 prox. do atrator
 cobweb(axs[0], P_PER, x0_per, 10, lam_per, "tab:green")
 cobweb(axs[1], P_CAO, X0, 10, lam_cao, "tab:red")
 plt.tight_layout()
-plt.savefig("ex3a_iii_cobweb.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "ex3a_iii_cobweb.png"), dpi=200)
 plt.show()

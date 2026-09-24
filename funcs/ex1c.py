@@ -1,6 +1,10 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
+
+IMG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens")
+os.makedirs(IMG_DIR, exist_ok=True)
 
 
 def campo(x, y):
@@ -74,9 +78,6 @@ for xs, ys, cor in variedades:
 for nome, (x0, y0) in pontos.items():
     tipo = classifica(jac(x0, y0))
     ax.plot(x0, y0, "o", ms=10, mfc=cores_pf[tipo], mec="k", mew=1.5, zorder=6)
-    ax.annotate(f"{nome}\n{tipo}",
-                (x0, y0), textcoords="offset points", xytext=(10, 8), fontsize=9,
-                bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="0.7", alpha=0.9))
 
 ax.set_xlim(xmin, xmax)
 ax.set_ylim(ymin, ymax)
@@ -84,7 +85,7 @@ ax.set_xlabel("$x$")
 ax.set_ylabel("$y$")
 ax.set_title(r"Ex. 1c: $\dot x=x(3-x-2y),\ \dot y=y(2-x-y)$")
 plt.tight_layout()
-plt.savefig("retrato_fase_1c_global.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "retrato_fase_1c_global.png"), dpi=200)
 
 fig2, axs = plt.subplots(2, 2, figsize=(10, 10))
 h = 0.35
@@ -111,10 +112,9 @@ for ax, (nome, (x0, y0)) in zip(axs.flat, pontos.items()):
     ax.set_ylim(y0 - h, y0 + h)
     ax.set_aspect("equal")
     ax.set_title(f"{nome}: {tipo}")
-    ax.legend(loc="lower left", fontsize=8, framealpha=0.95)
     ax.set_xlabel("$x$")
     ax.set_ylabel("$y$")
 plt.suptitle("Ex. 1c: retratos de fase locais (campo não linear + autovetores de J)")
 plt.tight_layout()
-plt.savefig("retrato_fase_1c_local.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "retrato_fase_1c_local.png"), dpi=200)
 plt.show()

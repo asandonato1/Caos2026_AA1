@@ -1,5 +1,9 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
+
+IMG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens")
+os.makedirs(IMG_DIR, exist_ok=True)
 
 A = np.array([[-1.0, 1.0],
               [-4.0, 1.0]]) # mesmo procedimento do 1a 
@@ -53,18 +57,8 @@ for h in niveis:
 
 mu, P = np.linalg.eigh(np.array([[4.0, -1.0], [-1.0, 1.0]]))
 s = np.array([-L, L]) * 1.5
-ax.plot(s * P[0, 0], s * P[1, 0], ":", color="tab:blue", lw=1.2,
-        label="eixo maior das elipses")
-ax.plot(s * P[0, 1], s * P[1, 1], ":", color="tab:purple", lw=1.2,
-        label="eixo menor das elipses")
 
-ss = np.linspace(-L, L, 2)
-ax.plot(ss, ss, "--", color="tab:green", lw=1.2,
-        label=r"isóclina $\dot x=0$: $y=x$")
-ax.plot(ss, 4 * ss, "--", color="tab:red", lw=1.2,
-        label=r"isóclina $\dot y=0$: $y=4x$")
-
-ax.plot(0, 0, "o", color="k", ms=8, zorder=5, label="ponto fixo (centro)")
+ax.plot(0, 0, "o", color="k", ms=8, zorder=5, label="$(x^*, y^*)$")
 
 ax.set_xlim(-L, L)
 ax.set_ylim(-L, L)
@@ -73,8 +67,8 @@ ax.axhline(0, color="k", lw=0.5)
 ax.axvline(0, color="k", lw=0.5)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$")
-ax.set_title(r"Ex. 1b: $\dot x=-x+y,\ \dot y=-4x+y$ — centro, $\lambda=\pm i\sqrt{3}$")
+ax.set_title(r"Ex. 1b: $\dot x=-x+y,\ \dot y=-4x+y$")
 ax.legend(loc="upper left", fontsize=8.5, framealpha=0.95)
 plt.tight_layout()
-plt.savefig("retrato_fase_1b.png", dpi=200)
+plt.savefig(os.path.join(IMG_DIR, "retrato_fase_1b.png"), dpi=200)
 plt.show()
